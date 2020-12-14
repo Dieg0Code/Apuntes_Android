@@ -1,7 +1,5 @@
 # Notas Kotlin
 
-## ¿Por qué debo aprender Kotlin?
-
 Kotlin es uno de los lenguajes oficiales que Google ha adoptado como parte de la familia de lenguajes de programación para desarrollar con Android. Kotlin fue desarrollado desde el año 2010 gracias a JetBrains y su primera versión fue liberada en el año 2016.
 
 Kotlin es:
