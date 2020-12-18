@@ -106,10 +106,34 @@ Por ejemplo, en vez enviar por parámetro un objeto específico (ej: new Corpora
 
 MVC fue la primera arquitectura con la cual empezó todo. Es importante conocerla en caso de que te encuentres con ella y sepas cómo migrar hacía una mejor arquitectura.
 
+El **Model** tendrá la conexión a una base de datos o una API, es donde estan las entidades y los accesos a datos.
+
 El **View** se va a componer de nuestra interfaz: botones y campos de texto, es donde estan los .xml como main_activity.xml.
 
 El **Controller** será toda la lógica de negocio. Puede tener la lógica de lo que realizará un botón, es la clase que "infla" la vista el MainActivity.kt, poner la logica de negocio en esta clase no es recomendable.
 
 Ambos elementos estarán definidos en un solo lugar.
 
-El **Model** tendrá la conexión a una base de datos o una API, es donde estan las entidades y los accesos a datos.
+## ¿Qué es la aquitectura Model View Presenter (MVP)?
+
+Esta arquitectura resuelve varios detalles que se presentan cuando tienes una aplicación con **MVC**. No toda la responsabilidad debe caer en nuestro **MainActivity** porque esto podría ocasionar errores de fluidez haciéndola colapsar al haber un proceso pesado en el hilo principal de la aplicación.
+
+**MVP** organiza mejor la distribución de archivos y define las responsabilidades de otra forma.
+
+**Model** (Dos componentes): interactor y repositorio. El interactor decide que tipo de fuente de datos se va utilizar. Hay varios tipos de repositorios
+uno puede ser una APIRest, BD, sharedPreferences.
+
+**View**: Activitys, fragments, view. La vista no tiene conocimiento de los modelos.
+
+**Presenter**:  Para cada activity o fragment, hay un presenter. Se encarga de recibir lo que la vista le solicite, primero pasando por el interactor.
+
+![diagrama mvp](img/mvpDiagram.jpg)
+
+## Composición en Clases
+
+Nos permite extender funcionalidades hacia una clase en particular, de interfaz a clase y no de clase a clase.
+
+Entidades/clases: contienen ciertos atributos y comportamientos.
+
+En la composición se abstraen las funcionalidades a traves de una interfaz. En la clase se conservan las propiedades o atributos, en cambio las funcionalidades se declaran en la interfaz. De esta manera se puede reutilizar el comportamiento que ofrece la interfaz, en otras clases.
+
