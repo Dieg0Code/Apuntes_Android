@@ -159,9 +159,9 @@ Android Studio es el IDE oficial de Android, está basado totalmente en el entor
 
 ![androidstudio](img/androidStudioLogo.jpg)
 
-En mi experiencia he podido observar toda la evolución que este IDE ha tenido y cada cambio ha traído sus gratos beneficios. Desde que nació y trajo la sorpresa de tener como motor constructor de aplicaciones a Gradle, de quien sabrás más al respecto en las próximas clases.
+Desde que nació y trajo la sorpresa de tener como motor constructor de aplicaciones a Gradle, de quien sabrás más al respecto en las próximas clases.
 
-Como ya te conté Android Studio tiene características exclusivas para móviles que te hacen mucho más sencillo construir y probar tus apps.
+Android Studio tiene características exclusivas para móviles que te hacen mucho más sencillo construir y probar tus apps.
 
 ### Un Dispositivo Virtual (Emulador) para probar tus apps
 
