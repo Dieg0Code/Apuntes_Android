@@ -137,3 +137,20 @@ Entidades/clases: contienen ciertos atributos y comportamientos.
 
 En la composición se abstraen las funcionalidades a traves de una interfaz. En la clase se conservan las propiedades o atributos, en cambio las funcionalidades se declaran en la interfaz. De esta manera se puede reutilizar el comportamiento que ofrece la interfaz, en otras clases.
 
+## Model View Presenter explicado
+
+### Diagrama de Model View Presenter
+
+![diagram](img/mvp.png)
+
+### Estructura de View
+
+![view](img/viewStructure.png)
+
+### Estructura de Presenter
+
+![presenter](img/presenterStructure.png)
+
+### Capa Model
+
+![model](img/model.png)
