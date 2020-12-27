@@ -208,3 +208,23 @@ En realidad en este punto nosotros ya tenemos experiencia con la separación de 
 2. **Uses Cases(Casos de uso)**. Aquí se contienen las reglas que le dan sentido a la aplicación, los casos de uso dirigen el flujo a las entidades y las orquestan para cumplir con el negocio.
 3. **Repositories y Presenters. Interface Adapters**. Esta es la capa intercesora que convierte los datos extraídos por la interfaz de usuario y la capa de datos en el formato más conveniente para los casos de uso.
 4. **UI y Data Source. Frameworks y Drivers**. En esta capa van todos los detalles tanto para  mostrar datos en la UI como para obtener los datos requeridos.
+
+## ¿Qué es la arquitectura Model View ViewModel (MVVM)?
+
+En general la arquitectura MVVM es diferente a MVP porque en esta arquitectura vamos a necesitar que los datos se estén manejando de una forma más automatizada y mucho más real time. Podemos usar varias versiones MVVM, una de ellas es **data binding** que es de las más antiguas y existen en muchos otros frameworks como .NET de Microsoft. También tenemos a **Live data** y **RxJava** o **RxAndroid** que son características de la programación reactiva que podemos utilizar para hacer la actualización de datos en tiempo real.
+
+![mvvm](img/mvvm.png)
+
+MVVM(Model-View-View-Model): Practicamente es un patron de arquitectura, se divide en 3 secciones:
+
+- Logica de negocio: que es nuestro modelo donde hay objetos
+- Logica de presentacion o viewModel: este es un intercomunicador para la interfaz de usuario y los datos que tengamos o el modelo
+- Interfaz de usuario: Es toda la vista para el usuario
+
+## ¿Cómo funciona MVVM Data Binding?
+
+Android Data Binding es una biblioteca de soporte que nos permite vincular los componentes de la interfaz de usuario a las fuentes de datos de forma declarativa en lugar de mediante programación, es potencialmente realmente potente y complejo, pero si se usa de manera efectiva, puede reducir la capacidad de presentación.
+
+![andoirdx](img/androidx.png)
+
+LiveData es una clase de retención de datos observable. A diferencia de una clase observable regular, LiveData está optimizada para ciclos de vida, lo que significa que respeta el ciclo de vida de otros componentes de las apps, como actividades, fragmentos o servicios. Esta optimización garantiza que LiveData solo actualice observadores de componentes de apps que tienen un estado de ciclo de vida activo.
