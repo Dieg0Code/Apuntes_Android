@@ -11,7 +11,7 @@ Las aplicaciones móviles en general nos exigen mucho, los usuarios nos exigen q
 - Segura
 - Mantenible
 
-## Patron de diseño vs. Arquitectura de Diseño
+## Patrón de diseño vs. Arquitectura de Diseño
 
 La **arquitectura** en general no solo podemos usarla en una aplicación móvil sino que deberíamos aplicarla a cualquier proyecto de software.
 
