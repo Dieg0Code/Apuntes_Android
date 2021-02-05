@@ -82,7 +82,7 @@ ArrayList implementa List (una interfaz o padre), por lo tanto al llamar los met
 public interface OnClickListener {
     void onClick(View v);
     void onLongClick(View v);
-    void onTouch(View, MotionEvent event); //Según el principio este metodo no deberia estar en la interface
+    void onTouch(View, MotionEvent event); //Según el principio este método no debería estar en la interface
 }
 ```
 
@@ -135,7 +135,7 @@ Nos permite extender funcionalidades hacia una clase en particular, de interfaz 
 
 Entidades/clases: contienen ciertos atributos y comportamientos.
 
-En la composición se abstraen las funcionalidades a traves de una interfaz. En la clase se conservan las propiedades o atributos, en cambio las funcionalidades se declaran en la interfaz. De esta manera se puede reutilizar el comportamiento que ofrece la interfaz, en otras clases.
+En la composición se abstraen las funcionalidades a través de una interfaz. En la clase se conservan las propiedades o atributos, en cambio las funcionalidades se declaran en la interfaz. De esta manera se puede reutilizar el comportamiento que ofrece la interfaz, en otras clases.
 
 ## Model View Presenter explicado
 
@@ -202,9 +202,9 @@ El nivel de acceso se dará a partir de las capas externas hasta llegar a las in
 
 ### Ahora expliquemos cada elemento
 
-En realidad en este punto nosotros ya tenemos experiencia con la separación de capas, de hecho ya aplicamos dos arquitecturas MVC y MVP para  hacerlas Clean subdividiremos un poco más pero  eso lo veremos más adelante, ahora solo quiero explicarte cada elmento a modo de recordatorio:
+En realidad en este punto nosotros ya tenemos experiencia con la separación de capas, de hecho ya aplicamos dos arquitecturas MVC y MVP para  hacerlas Clean subdividiremos un poco más pero  eso lo veremos más adelante, ahora solo quiero explicarte cada elemento a modo de recordatorio:
 
-1. **Entities** Las entidades son los modelos definidos que interactuarán en el sistema. Estas deben ser lo suficientemente abstractas para ser usados por múltiples aplicasciones en el negocio.
+1. **Entities** Las entidades son los modelos definidos que interactuarán en el sistema. Estas deben ser lo suficientemente abstractas para ser usados por múltiples aplicaciones en el negocio.
 2. **Uses Cases(Casos de uso)**. Aquí se contienen las reglas que le dan sentido a la aplicación, los casos de uso dirigen el flujo a las entidades y las orquestan para cumplir con el negocio.
 3. **Repositories y Presenters. Interface Adapters**. Esta es la capa intercesora que convierte los datos extraídos por la interfaz de usuario y la capa de datos en el formato más conveniente para los casos de uso.
 4. **UI y Data Source. Frameworks y Drivers**. En esta capa van todos los detalles tanto para  mostrar datos en la UI como para obtener los datos requeridos.
@@ -215,10 +215,10 @@ En general la arquitectura MVVM es diferente a MVP porque en esta arquitectura v
 
 ![mvvm](img/mvvm.png)
 
-MVVM(Model-View-View-Model): Practicamente es un patron de arquitectura, se divide en 3 secciones:
+MVVM(Model-View-View-Model): Practicamente es un patrón de arquitectura, se divide en 3 secciones:
 
-- Logica de negocio: que es nuestro modelo donde hay objetos
-- Logica de presentacion o viewModel: este es un intercomunicador para la interfaz de usuario y los datos que tengamos o el modelo
+- Lógica de negocio: que es nuestro modelo donde hay objetos
+- Lógica de presentación o viewModel: este es un intercomunicador para la interfaz de usuario y los datos que tengamos o el modelo
 - Interfaz de usuario: Es toda la vista para el usuario
 
 ## ¿Cómo funciona MVVM Data Binding?
