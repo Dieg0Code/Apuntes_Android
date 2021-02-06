@@ -215,7 +215,7 @@ En general la arquitectura MVVM es diferente a MVP porque en esta arquitectura v
 
 ![mvvm](img/mvvm.png)
 
-MVVM(Model-View-View-Model): Practicamente es un patrón de arquitectura, se divide en 3 secciones:
+MVVM(Model-View-View-Model): Prácticamente es un patrón de arquitectura, se divide en 3 secciones:
 
 - Lógica de negocio: que es nuestro modelo donde hay objetos
 - Lógica de presentación o viewModel: este es un intercomunicador para la interfaz de usuario y los datos que tengamos o el modelo
