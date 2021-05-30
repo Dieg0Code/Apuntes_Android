@@ -239,7 +239,7 @@ describir cómo funciona un programa
 Koltin no es un lenguaje de programación funcional 100% como Haskell o Scala. Pero tiene varios conceptos que nos
 ayudarán a sacarle mayor provecho a Kotlin
 
-#### Nunca mutable simpre inmutable
+#### Nunca mutable siempre inmutable
 
 Un elemento es mutable cuando puede cambiar, inmutable cuando no. Es recomendable usar variables de solo lectura y
 estructuras de datos no mutables.
@@ -253,3 +253,62 @@ Las funciones pueden almacenarse en variables, pasarse como parámetros y tratar
 Recibe siempre los mismos parámetros y devuelve siempre el mismo resultado.
 
 No puede verse afectada por elementos fuera de su entorno.
+
+## Estructuras de control: if
+
+Las estructuras de control nos permiten ejecutar código dependiendo de una condición.
+
+```kotlin
+fun main(array: Array<String>) {
+    val nombre = "Diego"
+
+    // isNotEmpty es una función para todas las Strings, devuelve un booleano
+    if (nombre.isNotEmpty()) {
+        println("El largo de nuestra variable nombre es ${nombre.length}")
+    } else {
+        println("Error, la variable esta vacía")
+    }
+
+    val mensaje: String = if (nombre.length > 4) {
+        "Tu nombre es largo"
+    } else if (nombre.isEmpty()) {
+        "nombre esta vacío"
+    } else {
+        "Tienes un nombre corto"
+    }
+    println(mensaje)
+}
+```
+
+## Estructuras de control: when
+
+when nos ayuda a en lugar de tener varios if para comparar varias condiciones comparar con una sola condición y ejecutar
+varios códigos dependiendo del resultado de esa condición.
+
+```kotlin
+fun main(args: Array<String>) {
+    val nombreColor = "Carmesi"
+
+    when (nombreColor) {
+        "Amarillo" -> println("El amarillo es el color de la alegría")
+        "Rojo", "Carmesi" -> println("Este color simboliza el calor")
+        else -> println("Error no tengo información del color $nombreColor")
+    }
+
+    val code = 200
+    when (code) {
+        in 200..299 -> println("Código entre 200 y 299")
+        in 400..500 -> println("Código entre 400 y 500")
+        else -> println("Código desconocido, algo ha fallado")
+    }
+
+    val tallaDeZapatos = 41
+    val mensaje: String = when (tallaDeZapatos) {
+        41,43 -> "Tenemos disponible"
+        42,44 -> "Casi no quedan"
+        45 -> "Lo siento no tenemos disponible"
+        else -> "No hay de esa talla"
+    }
+    println(mensaje)
+}
+```
