@@ -218,3 +218,38 @@ utilizar la verión larga del **operador fun** o el operador directamente.
 
 Ten en cuenta que si las **operator fun** se inventaron para que puedas reducir ti código a operaciones con símbolos
 ¿por algo será, no?
+
+## Kotlin y la programación funcional
+
+### Paradigmas de programación
+
+Existen varias formas de escribir código y estas formas son llamadas **paradigmas**
+
+#### Paradigma imperativo
+
+Este paradigma se basa en modificar el estado de tu programa modificando estados dentro del mismo. Se centra en
+describir cómo funciona un programa
+
+#### Programación funcional
+
+- Es un paradigma de programación declarativo.
+- Expresa la lógica de un programa sin describir lo que hace.
+- Se enfoca en lo que el programa debe hacer no en cómo se hace.
+
+Koltin no es un lenguaje de programación funcional 100% como Haskell o Scala. Pero tiene varios conceptos que nos
+ayudarán a sacarle mayor provecho a Kotlin
+
+#### Nunca mutable simpre inmutable
+
+Un elemento es mutable cuando puede cambiar, inmutable cuando no. Es recomendable usar variables de solo lectura y
+estructuras de datos no mutables.
+
+#### Las funciones son objetos
+
+Las funciones pueden almacenarse en variables, pasarse como parámetros y tratarse como cualquier otro objeto.
+
+#### Usa funciones puras
+
+Recibe siempre los mismos parámetros y devuelve siempre el mismo resultado.
+
+No puede verse afectada por elementos fuera de su entorno.
