@@ -392,3 +392,49 @@ Nos permite filtrar los elementos que cumplan con una condición
 ```kotlin
 val listaFiltrada = caracteresDeFruta.filter { largoDeFruta -> largoDeFruta > 5 }
 ```
+
+## Null-Safety en Kotlin
+
+El null-safety es uno de los valores primordiales de kotlin que hay que tener mucho en cuenta.
+
+### Tipos
+
+Si tenemos un boolean, tenemos dos posibles valores, **true** o **false**. Pero qué ocurre si te digo que puede existir
+un **tercer valor** el **null**.
+
+### La nada o el null
+
+Existe un elemento llamado **null** que indica que el contenido de nuestra variable no existe, que está apuntando a una
+referencia de memoria que no existe.
+
+Esto es un problema común en java porque existe algo que se llama referencia nula, esto quiere decir que hay una
+variable que no se le ha asignado ningún valor y por ende está apuntando a un sitio que no tiene ningún valor.
+
+### El origen del boolean de tres valores
+
+Un booleano puede tener solo dos valores true o false. Pero un boolean nullable, aquel que puede ser nulo, tiene
+tres, **true**, **false** o **null**.
+
+Esto suele pasar en Java, en la respuesta de servidores y en código escrito con malas prácticas.
+
+### El origen de la nada
+
+La referencia nula o null pointer. Fue creada por **Sir Tony Hoare** en 1965.
+
+En 2009 contó en una charla que fue un error haber creado el **null** y que fue una solución rápida que no evolucionó
+muy bien.
+
+### ¿Cómo nos ayuda Kotlin?
+
+Kotlin da herramientas para detectar cuando una variable es nula, agregando el tipo nullable. Con esto el compilador es
+capaz de advertirnos que parte puede fallar debido a una referencia nula.
+
+Por defecto, todas las variables en Kotlin son non-nullable. De este modo, si intentamos asignar un valor null a
+cualquier variable, el compilador lanzará un error:
+
+```kotlin
+var saludoNullable: String? = "Hola"
+saludoNullable = null // Compila
+```
+
+Si queremos permitir que una variable pueda ser null, tendremos que definirla añadiendo "?" a su tipo de dato.
