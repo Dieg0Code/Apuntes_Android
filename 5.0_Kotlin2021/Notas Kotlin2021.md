@@ -355,3 +355,40 @@ fun main(args: Array<String>) {
     }
 }
 ```
+
+También podemos eliminar las llaves y dejar todo el ciclo en una sola línea.
+
+```kotlin
+fun main(args: Array<String>) {
+    val listaDeFrutas = listOf("Manzana", "Pera", "Frambuesa", "Durazno")
+    for (fruta in listaDeFrutas) println("Hoy voy a comerme una fruta llamada $fruta")
+}
+```
+
+Asi se ve mas elegante.
+
+### forEach
+
+Es un ciclo que se va a ejecutar N cantidad de veces, mientras exista un elemento en la lista
+
+```kotlin
+listaDeFrutas.forEach { fruta -> println("Hoy voy a comerme una fruta nueva, se llama $fruta") }
+```
+
+### map
+
+Para no tener que estar creando un **for** y estar agregando elementos constantemente a una nueva lista, podemos
+convertir la lista de frutas directamente a una lista de enteros que contenga el largo de caracteres de cada fruta
+utilizando la función **map**.
+
+```kotlin
+val caracteresDeFruta: List<Int> = listaDeFrutas.map { fruta -> fruta.length }
+```
+
+### filter
+
+Nos permite filtrar los elementos que cumplan con una condición
+
+```kotlin
+val listaFiltrada = caracteresDeFruta.filter { largoDeFruta -> largoDeFruta > 5 }
+```
