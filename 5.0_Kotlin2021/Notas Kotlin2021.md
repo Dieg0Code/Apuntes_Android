@@ -304,11 +304,54 @@ fun main(args: Array<String>) {
 
     val tallaDeZapatos = 41
     val mensaje: String = when (tallaDeZapatos) {
-        41,43 -> "Tenemos disponible"
-        42,44 -> "Casi no quedan"
+        41, 43 -> "Tenemos disponible"
+        42, 44 -> "Casi no quedan"
         45 -> "Lo siento no tenemos disponible"
         else -> "No hay de esa talla"
     }
     println(mensaje)
+}
+```
+
+## Bucles: While y Do While
+
+El ciclo **while**, se ejecutará mientras se cumpla la condición especificada
+
+```kotlin
+fun main(args: Array<String>) {
+    var contador = 10
+    while (contador > 0) {
+        println("El valor de contador es $contador")
+        contador--  //  Valor actual menos 1
+    }
+}
+```
+
+Mientras que el ciclo **do-while** se ejecuta primero y luego verifica la condición
+
+```kotlin
+fun main(args: Array<String>) {
+    do {
+        println("Generando un numero aleatorio...")
+        val numeroAleatorio = (0..100).random()
+        println("El numero generado es $numeroAleatorio")
+    } while (numeroAleatorio > 50)
+}
+```
+
+## Ciclos
+
+### Ciclo for
+
+El ciclo **for** nos permite ejecutar un código para cada elemento de la lista que creamos.
+
+A diferencia de java el ciclo **for** en kotlin puede ser mucho más sencillo.
+
+```kotlin
+fun main(args: Array<String>) {
+    val listaDeFrutas = listOf("Manzana", "Pera", "Frambuesa", "Durazno")
+    for (fruta in listaDeFrutas) {
+        println("Hoy voy a comerme una fruta llamada $fruta")
+    }
 }
 ```
