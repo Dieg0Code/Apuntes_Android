@@ -438,3 +438,96 @@ saludoNullable = null // Compila
 ```
 
 Si queremos permitir que una variable pueda ser null, tendremos que definirla añadiendo "?" a su tipo de dato.
+
+## Valores nulos, Double bang y cómo solucionarlos
+
+### Los null no son malos, son incomprendidos
+
+Como toda herramienta puede ser mal utilizada o bien utilizada.
+
+### Como declaramos un tipo que puede ser nulo
+
+Para esto debemos utilizar el símbolo de interrogación después del tipo de dato que queremos utilizar.
+
+Ej:
+
+````kotlin
+var segundoNombre: String? = "Matías"
+````
+
+### El compilador es tu amigo no tu enemigo
+
+El compilador es capaz de interpretar estos tipos. Y advertirnos de lo que puede ocurrir al correr nuestro programa.
+
+### Crea código para otros
+
+Crea código como si tuvieras que trabajar en ello dentro de un año. Esto te ayudará a pensar en una solución a futuro y
+no solo en complacer al compilador.
+
+### La regla de los Boy Scout
+
+Deja siempre el código mejor que lo encontraste.
+
+### Safe calls
+
+Las safe calls son una herramienta del lenguaje que nos ayuda a ejecutar un código cuando una variable del tipo nullable
+no es nula.
+
+````kotlin
+println(segundoNombre?.length()) // imprime solo cuando la variable sea no nula
+````
+
+### Double bang
+
+Este operador se indica con dos símbolos de exclamación !!.
+
+Con esto le dices al compilador que sabes que en este punto la variable no puede ser nula.
+
+La recomendación es que se utilice lo menos posible porque son considerados malas prácticas.
+
+Cuando pienses que algo no puede ser nulo, probablemente lo sea (ley de murphy).
+
+### Gran poder, gran responsabilidad
+
+No está bien usarlo siempre para que tu código compile y ya. Úsalo solo cuando sea necesario y sepas que esta variable
+no será nula en este punto.
+
+### Interoperabilidad con Java
+
+Al ejecutar código escrito por otras personas en Java desde Kotlin. Puede que te encuentres con estos tipos de
+variable: **Integer!**. Esto significa que el tipo de dato no puede ser verificado por Kotlin para que te diga si puede
+ser nullable o no, es una especie de advertencia para que tengas cuidado y para que conviertas eso a un nullable, porque
+Kotlin no puede decirte si va a ser nullable o no, ya que depende de Java y en Java no tenemos ese null-safety.
+
+Los tipos **Integer!** son la forma que tiene Kotlin de avisarte que no puede asegurarse de que ese código **no**
+devuelve null. Como recomendación siempre trátalos como nullables.
+
+## Try Catch
+
+El try-catch es usado para capturar posibles errores en el código
+
+````kotlin
+fun main(args: Array<String>) {
+    var nombre: String? = null
+    try {
+        throw NullPointerException("Referencia nula")
+    } catch (exception: NullPointerException) {
+        println("Ha ocurrido un error")
+    } finally {
+        println("Finalmente ha ocurrido un error... Cerrando aplicación")
+    }
+
+    val primerValor = 10
+    val segundoValor = 0
+
+    //  Podemos asignar un try-catch a un variable
+    val resultado: Int = try {
+        primerValor / segundoValor
+    } catch (exception: Exception) {
+        0
+    }
+    println(resultado)
+}
+````
+
+Se usa cuando creemos que algo puede llegar a fallar para luego ver que hacemos en ese caso.
