@@ -685,7 +685,7 @@ fun main(args: Array<String>) {
 - Entonces, estas son algunas de las diferencias entre una lista y una matriz. Si tiene datos de tamaño fijo, se pueden
   utilizar matrices. Si bien el tamaño de los datos puede variar, se pueden usar listas mutables.
 
-## Como ordenar litas con las funciones que tiene Kotlin
+## Cómo ordenar litas con las funciones que tiene Kotlin
 
 ````kotlin
 fun main(args: Array<String>) {
@@ -717,5 +717,66 @@ fun main(args: Array<String>) {
     // filter: nos permite filtrar elementos dependiendo de la condición que le pasemos
     val numerosFiltrados = numerosDeLoteria.filter { numero -> numero > 50 }
     println(numerosFiltrados)
+}
+````
+
+Vale la pena comentar que también podemos encadenar los métodos que nos dan las lista, como ejemplo:
+
+````kotlin
+val listaDeStringDeNumeros = numerosDeLoteria.filter { num -> num > 50 }.map { num -> "numero: $num" }
+````
+
+Lo que nos entrega una lista de Strings de números mayores de 50, por si quieren ahorrarse código.
+
+## Maps
+
+Los Maps no tienen que ver con la función map anterior, los Maps son elementos de clave valor que nos permiten ordenar
+los elementos de una forma en la que tenemos una clave que tiene asignado un valor, además existen los Maps inmutables e
+inmutables.
+
+````kotlin
+fun main(args: Array<String>) {
+    // son una estructura de datos del tipo clave - valor
+    // para cada clave existe un valor
+    // un valor puede pertenecer a varias claves, pero solo puede existir una clave del mismo tipo
+
+    // mapOf() crea mapas inmutables
+    val edadDeSuperHeroes = mapOf(
+        "Ironman" to 35,
+        "Spiderman" to 23,
+        "Capitan America" to 99
+    )
+    println(edadDeSuperHeroes)
+
+    // mutableMapOf() crea mapas mutables
+    val edadDeSuperHeroesMutable = mutableMapOf(
+        "IronMan" to 35,
+        "SpiderMan" to 23,
+        "Capitan America" to 99
+    )
+    println(edadDeSuperHeroesMutable)
+
+    // para agregar un elemento
+    edadDeSuperHeroesMutable.put("Wolverine", 45)
+    println(edadDeSuperHeroesMutable)
+
+    edadDeSuperHeroesMutable["Storm"] = 30
+    println(edadDeSuperHeroesMutable)
+
+    // para obtener un valor de un map
+    // no modifica el valor del map por lo que se puede usar con mutables e inmutables
+
+    val edadIronMan = edadDeSuperHeroesMutable["IronMan"]
+    println(edadIronMan)
+
+    // para eliminar un elemento de un map
+    edadDeSuperHeroesMutable.remove("Wolverine")
+    println(edadDeSuperHeroesMutable)
+
+    // para ver las keys de un map
+    println(edadDeSuperHeroesMutable.keys)
+
+    // para ver los valores de un map
+    println(edadDeSuperHeroesMutable.values)
 }
 ````
