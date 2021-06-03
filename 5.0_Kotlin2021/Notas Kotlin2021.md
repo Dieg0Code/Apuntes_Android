@@ -530,4 +530,21 @@ fun main(args: Array<String>) {
 }
 ````
 
-Se usa cuando creemos que algo puede llegar a fallar para luego ver que hacemos en ese caso.
+Se usa cuando creemos que algo puede llegar a fallar, para luego ver que hacemos en ese caso.
+
+## Elvis operator
+
+Nos ayuda a devolver un valor cuando un elemento es nulo.
+
+Podemos convertir un tipo nullable a un tipo no nullable usando el operador elvis para asignar un valor por defecto a
+una variable en el caso de que el código que ejecutamos devuelva nulo.
+
+````kotlin
+fun main(args: Array<String>) {
+    var nombre: String? = null
+    // al lado derecho va el valor por defecto que se asignará en caso de que sea nulo
+    var caracteresDeNombre: Int = nombre?.length ?: 0 // return 0 porque la variable nombre es nula
+}
+````
+
+`?:` Se llama operador elvis porque parece un copete, como el del cantante elvis
