@@ -547,4 +547,117 @@ fun main(args: Array<String>) {
 }
 ````
 
-`?:` Se llama operador elvis porque parece un copete, como el del cantante elvis
+`?:` Se llama operador elvis porque parece un copete, como el del cantante Elvis.
+
+## Listas
+
+Las listas pertenecen a la familia de las collections, se dividen en **dos tipos: listas mutables y listas inmutables**.
+Las listas inmutables son aquellas que no pueden tener elementos modificados, esto quiere decir que una ves que asignes
+los elementos a esta lista no vas a poder eliminarlos ni modificarlos.
+
+````kotlin
+fun main(args: Array<String>) {
+    val listaDeNombres = listOf("Juan", "Enrique", "Camila")// esta lista no puede ser modificada
+    println(listaDeNombres)
+
+    val listaVacia = mutableListOf<String>() // esta lista si puede ser modificada
+    println(listaVacia)
+
+    listaVacia.add("Diego")
+    println(listaVacia)
+
+    // Para obtener un valor de una lista se puede hacer de dos formas
+
+    val valorUsandoGet = listaVacia.get(0)
+    println(valorUsandoGet)
+
+    val valorUsandoOperador = listaVacia[0]
+    println(valorUsandoOperador)
+
+    // Existen muchas formas en Kotlin para obtener el valor de una lista
+
+    val primerValor = listaDeNombres.first() // obtiene el primer valor y lo devuelve
+    // también se puede pasar como parámetro una condición para obtener el primer elemento que cumpla con esa condición
+    println(primerValor)
+    // este operador hay que tenerlo en cuenta porque aunque imprima igual que los otros dos
+    // puede que no encuentre el primer elemento de la lista y de una excepción.
+    // En ese caso es mas recomendable usar el firstOrNull()
+
+    val primerValorOrNull: String? = listaDeNombres.firstOrNull()
+    println(primerValorOrNull)
+
+    // busca el primer elemento y en caso de que la lista esté vacía devolverá un string nullable
+
+    // Para eliminar elementos
+    listaVacia.removeAt(0)
+    println(listaVacia)
+
+    listaVacia.add("Enrique")
+    println(listaVacia)
+    listaVacia.removeIf { carateres -> carateres.length > 3 } // remueve cuando la condición dentro de las llaves sea verdadera
+    println(listaVacia)
+}
+fun main(args: Array<String>) {
+    val listaDeNombres = listOf("Juan", "Enrique", "Camila")// esta lista no puede ser modificada
+    println(listaDeNombres)
+
+    val listaVacia = mutableListOf<String>() // esta lista si puede ser modificada
+    println(listaVacia)
+
+    listaVacia.add("Diego")
+    println(listaVacia)
+
+    // Para obtener un valor de una lista se puede hacer de dos formas
+
+    val valorUsandoGet = listaVacia.get(0)
+    println(valorUsandoGet)
+
+    val valorUsandoOperador = listaVacia[0]
+    println(valorUsandoOperador)
+    // Kotlin es capaz de sobreescribir el operador de indexación para obtener este valor
+
+    // Existen muchas formas en Kotlin para obtener el valor de una lista
+
+    val primerValor = listaDeNombres.first() // obtiene el primer valor y lo devuelve
+    // también se puede pasar como parámetro una condición para obtener el primer elemento que cumpla con esa condición
+    println(primerValor)
+    // este operador hay que tenerlo en cuenta porque aunque imprima igual que los otros dos
+    // puede que no encuentre el primer elemento de la lista y de una excepción.
+    // En ese caso es mas recomendable usar el firstOrNull()
+
+    val primerValorOrNull: String? = listaDeNombres.firstOrNull()
+    println(primerValorOrNull)
+
+    // busca el primer elemento y en caso de que la lista esté vacía devolverá un string nullable
+
+    // Para eliminar elementos
+    listaVacia.removeAt(0)
+    println(listaVacia)
+
+    listaVacia.add("Enrique")
+    println(listaVacia)
+    listaVacia.removeIf { carateres -> carateres.length > 3 } // remueve cuando la condición dentro de las llaves sea verdadera
+    println(listaVacia)
+}
+````
+
+### Arrays
+
+Los arrays son una estructura de datos que contiene una lista de elementos agrupados. En Kotlin el compilador es lo
+suficientemente inteligente para adecuarlos dependiendo de las necesidades, es decir, que si tienes una lista de arrays
+que son nullables puede que la mejor forma de utilizarlo sean las listas, además las arrays no cuentan con tantas
+funciones como las listas.
+
+Las arrays al ser una estructura de datos muy básica, a diferencia de las listas, no nos permite tener una
+visualización, exacta si nó que devuelve el código en bytecode.
+
+En Java es mejor usar arrays pero en Kotlin es mejor usar listas.
+
+````kotlin
+fun main(args: Array<String>) {
+    //Arrays
+    val myArray = arrayOf(1, 2, 3, 4)
+    println("Nuestro array $myArray")
+    println("Array como lista ${myArray.toList()}") // convertimos el array a una lista para poder imprimirlo
+}
+````
