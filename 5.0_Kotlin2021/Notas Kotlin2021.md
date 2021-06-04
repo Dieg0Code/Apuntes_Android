@@ -957,11 +957,56 @@ fun main(args: Array<String>) {
     val myLambda: (String) -> Int = { valor -> // it es el valor que estamos pasando a la lambda
         valor.length
     }   // devuelve un Int, el cual es el length del String que le pasemos
-    val lambdaEjectutada: Int = myLambda("Hola Kbroz") // ejecuta la lambda
-    println(lambdaEjectutada)
+    val lambdaEjecutatada: Int = myLambda("Hola Kbroz") // ejecuta la lambda
+    println(lambdaEjecutatada)
 
     val saludos = listOf("Hello", "Hola", "ni hao")
     val longitudDeSaludos = saludos.map(myLambda)
     println(longitudDeSaludos)
+}
+````
+
+## High Order Functions
+
+Son aquellas funciones que reciben otra función como parámetro.
+
+````kotlin
+fun main(args: Array<String>) {
+    val largoDelValorInicial = superFuncion(valorInicial = "Hola!", block = { valor ->
+        valor.length
+    })
+    println(largoDelValorInicial)
+}
+
+fun superFuncion(valorInicial: String, block: (String) -> Int): Int {
+    return block(valorInicial)  //  para obtener el valor de una lambda debemos pasarle un parámetro
+    // cuando se usan las lambdas como parámetro de una función se deben dejar en la ultima posición
+    // porque esto nos permite sacar la lambda fuera de la función
+}
+````
+
+````kotlin
+fun main(args: Array<String>) {
+    val largoDelValorInicial = superFuncion(valorInicial = "Hola!") { valor ->
+        valor.length
+    }
+    println(largoDelValorInicial)
+
+    val lambda: () -> String = funcionInception("Diego")
+    val valorLambda: String = lambda()
+    println(valorLambda)
+}
+
+// Kotlin recomienda que llamemos block a la lambda cuando es pasada como parametro
+fun superFuncion(valorInicial: String, block: (String) -> Int): Int {
+    return block(valorInicial)  //  para obtener el valor de una lambda debemos pasarle un parámetro
+    // cuando se usan las lambdas como parámetro de una función se deben dejar en la ultima posición
+    // porque esto nos permite sacar la lambda fuera de la función
+}
+
+fun funcionInception(nombre: String): () -> String { // esta función devuelve una lambda, que devuelve una String
+    return {
+        "Hola desde la lambda $nombre"
+    }
 }
 ````

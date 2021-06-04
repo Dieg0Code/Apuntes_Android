@@ -5,8 +5,8 @@ fun main(args: Array<String>) {
     val myLambda: (String) -> Int = { valor -> // it es el valor que estamos pasando a la lambda
         valor.length
     }   // devuelve un Int, el cual es el length del String que le pasemos
-    val lambdaEjectutada: Int = myLambda("Hola Kbroz") // ejecuta la lambda
-    println(lambdaEjectutada)
+    val lambdaEjecutatada: Int = myLambda("Hola Kbroz") // ejecuta la lambda
+    println(lambdaEjecutatada)
 
     val saludos = listOf("Hello", "Hola", "ni hao")
     val longitudDeSaludos = saludos.map(myLambda)
