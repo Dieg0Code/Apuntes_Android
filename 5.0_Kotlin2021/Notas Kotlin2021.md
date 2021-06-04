@@ -914,3 +914,35 @@ fun String.randomCase(): String {
     }
 }
 ````
+
+## Tipos de parámetros en la funciones
+
+Dependiendo de la función que queramos podemos crear distintos tipos de parámetros, podeos crear parámetros nombrados o
+parámetros por defecto.
+
+### Parámetros nombrados
+
+````kotlin
+fun main(args: Array<String>) {
+    // parámetros nombrados
+    imprimirNombre(nombre = "Diego", apellido = "Obando") // con parámetros nombrados
+    // Esto es de mucha ayuda y es una buena practica hacerlo cuando tienes una función que recibe como parámetro
+    // dos parámetros del mismo tipo en este caso dos Strings
+}
+
+fun imprimirNombre(nombre: String, apellido: String) {
+    println("Mi nombre es $nombre y mi apellido es $apellido")
+}
+````
+
+### Parámetros por defecto
+
+Estos nos ayudan a que nuestras funciones sean más legibles y no tengan demasiados parámetros que no vamos a utilizar.
+Ayuda cuando tenemos funciones con muchos parámetros.
+
+````kotlin
+// parámetros por defecto
+fun imprimirNombre(nombre: String, segundoNombre: String = "segundo nombre", apellido: String) {
+    println("Mi nombre completo es $nombre $segundoNombre $apellido")
+}
+````
