@@ -69,7 +69,7 @@ fun main(args: Array<String>) {
 
 Como en cualquier lenguaje la **función main** es el punto de entrada del proyecto.
 
-## Variables en Kotlin
+### Variables en Kotlin
 
 Las variables sirven para almacenar datos temporales y utilizarlos a lo largo de nuestro código. Son información
 almacenada en la memoria RAM.
@@ -83,9 +83,9 @@ almacenada en la memoria RAM.
   reservada `const` seguida de la palabra reservada `val`, este tipo de variables son usadas para valores que nunca
   cambian.
 
-En Kotlin no se pude cambiar el tipo de dato con que se a definido una variable, si la variable se definió con el tipo
+En Kotlin no se puede cambiar el tipo de dato con que se a definido una variable, si la variable se definió con el tipo
 de dato String solo podremos actualizar dicho valor por otro String, por ejemplo no podemos pasar de un String a un
-numero.
+número.
 
 ```kotlin
 // Constantes, de solo lectura
@@ -180,7 +180,8 @@ código saludable.
 Debido a que Kotlin tiene que compilar el código que nosotros escribimos y hacerlo interoperable con Java. Debe seguir
 algunas reglas.
 
-Un entero puede ser nulo, no se convertirá a primitivo. Pero un entero que no puede ser nulo, se convertirá a primitivo.
+Si un entero puede ser nulo, no se convertirá a primitivo. Pero un entero que no puede ser nulo, se convertirá a
+primitivo.
 
 ## Operaciones con los tipos de datos en Kotlin
 
@@ -254,7 +255,7 @@ Recibe siempre los mismos parámetros y devuelve siempre el mismo resultado.
 
 No puede verse afectada por elementos fuera de su entorno.
 
-## Estructuras de control: if
+### Estructuras de control: if
 
 Las estructuras de control nos permiten ejecutar código dependiendo de una condición.
 
@@ -280,7 +281,7 @@ fun main(array: Array<String>) {
 }
 ```
 
-## Estructuras de control: when
+### Estructuras de control: when
 
 when nos ayuda a en lugar de tener varios if para comparar varias condiciones comparar con una sola condición y ejecutar
 varios códigos dependiendo del resultado de esa condición.
@@ -313,7 +314,9 @@ fun main(args: Array<String>) {
 }
 ```
 
-## Bucles: While y Do While
+## Conceptos básicos de Kotlin
+
+### Bucles: While y Do While
 
 El ciclo **while**, se ejecutará mientras se cumpla la condición especificada
 
@@ -339,7 +342,7 @@ fun main(args: Array<String>) {
 }
 ```
 
-## Ciclos
+### Ciclos:
 
 ### Ciclo for
 
@@ -393,7 +396,7 @@ Nos permite filtrar los elementos que cumplan con una condición
 val listaFiltrada = caracteresDeFruta.filter { largoDeFruta -> largoDeFruta > 5 }
 ```
 
-## Null-Safety en Kotlin
+### Null-Safety en Kotlin
 
 El null-safety es uno de los valores primordiales de kotlin que hay que tener mucho en cuenta.
 
@@ -439,7 +442,7 @@ saludoNullable = null // Compila
 
 Si queremos permitir que una variable pueda ser null, tendremos que definirla añadiendo "?" a su tipo de dato.
 
-## Valores nulos, Double bang y cómo solucionarlos
+### Valores nulos, Double bang y cómo solucionarlos
 
 ### Los null no son malos, son incomprendidos
 
@@ -502,7 +505,7 @@ Kotlin no puede decirte si va a ser nullable o no, ya que depende de Java y en J
 Los tipos **Integer!** son la forma que tiene Kotlin de avisarte que no puede asegurarse de que ese código **no**
 devuelve null. Como recomendación siempre trátalos como nullables.
 
-## Try Catch
+### Try Catch
 
 El try-catch es usado para capturar posibles errores en el código
 
@@ -532,7 +535,7 @@ fun main(args: Array<String>) {
 
 Se usa cuando creemos que algo puede llegar a fallar, para luego ver que hacemos en ese caso.
 
-## Elvis operator
+### Elvis operator
 
 Nos ayuda a devolver un valor cuando un elemento es nulo.
 
@@ -549,7 +552,9 @@ fun main(args: Array<String>) {
 
 `?:` Se llama operador elvis porque parece un copete, como el del cantante Elvis.
 
-## Listas
+## Collections en Kotlin
+
+### Listas
 
 Las listas pertenecen a la familia de las collections, se dividen en **dos tipos: listas mutables y listas inmutables**.
 Las listas inmutables son aquellas que no pueden tener elementos modificados, esto quiere decir que una ves que asignes
@@ -685,7 +690,7 @@ fun main(args: Array<String>) {
 - Entonces, estas son algunas de las diferencias entre una lista y una matriz. Si tiene datos de tamaño fijo, se pueden
   utilizar matrices. Si bien el tamaño de los datos puede variar, se pueden usar listas mutables.
 
-## Cómo ordenar litas con las funciones que tiene Kotlin
+### Cómo ordenar listas con las funciones que tiene Kotlin
 
 ````kotlin
 fun main(args: Array<String>) {
@@ -728,7 +733,7 @@ val listaDeStringDeNumeros = numerosDeLoteria.filter { num -> num > 50 }.map { n
 
 Lo que nos entrega una lista de Strings de números mayores de 50, por si quieren ahorrarse código.
 
-## Maps
+### Maps
 
 Los Maps no tienen que ver con la función map anterior, los Maps son elementos de clave valor que nos permiten ordenar
 los elementos de una forma en la que tenemos una clave que tiene asignado un valor, además existen los Maps inmutables e
@@ -781,7 +786,7 @@ fun main(args: Array<String>) {
 }
 ````
 
-## Sets
+### Sets
 
 Los sets, a diferencia de las listas, no pueden tener elementos repetidos, esto quiere decir que todo elemento repetido
 será eliminado, solamente se tendrá en cuenta el primero declarado.
@@ -818,7 +823,9 @@ fun main(args: Array<String>) {
 }
 ````
 
-## ¿Qué son las funciones?
+## Libera el potencial de las funciones
+
+### ¿Qué son las funciones?
 
 Una función es un código que se ejecuta cada vez que lo llamamos. Las hemos venido utilizando anteriormente, pero ahora
 vamos a profundizar. Es un código que una vez que le pasas unos parámetros ejecuta ese código una vez más y devuelve un
@@ -860,7 +867,7 @@ fun imprimir(nombre: String, apellidos: String) {
 }
 ````
 
-## Funciones y funciones de extensión
+### Funciones y funciones de extensión
 
 ````kotlin
 fun main(args: Array<String>) {
@@ -885,7 +892,7 @@ fun randomCase(frase: String): String {
 }
 ````
 
-### Funciones de extención
+### Funciones de extensión
 
 Las funciones de extensión nos permiten extender del comportamiento del tipo de la función y utilizarlas como si fuesen
 frases directamente de ese tipo. Para ello tenemos que especificar el tipo al momento de crear una función
@@ -915,7 +922,7 @@ fun String.randomCase(): String {
 }
 ````
 
-## Tipos de parámetros en la funciones
+### Tipos de parámetros en la funciones
 
 Dependiendo de la función que queramos podemos crear distintos tipos de parámetros, podeos crear parámetros nombrados o
 parámetros por defecto.
@@ -947,7 +954,7 @@ fun imprimirNombre(nombre: String, segundoNombre: String = "segundo nombre", ape
 }
 ````
 
-## Lambdas
+### Lambdas
 
 Las conocemos en otros lenguajes como funciones anónimas o funciones literales.
 
@@ -966,7 +973,7 @@ fun main(args: Array<String>) {
 }
 ````
 
-## High Order Functions
+### High Order Functions
 
 Son aquellas funciones que reciben otra función como parámetro.
 
@@ -1010,3 +1017,14 @@ fun funcionInception(nombre: String): () -> String { // esta función devuelve u
     }
 }
 ````
+
+## Scope Functions
+
+Son unas funciones que tiene Kotlin que nos permite realizar ciertas operaciones de una forma más dinámica, con una
+sintaxis más concisa. Por ejemplo vamos a trabajar con funciones que nos permiten modificar una variable, sin tener que
+estar repitiendo el nombre de la variable, o como la función **let**:
+
+### let
+
+Nos permite combinado con el operador de **safe calls** ejecutar un código **solo cuando una variable nullable no es
+nula**, para evitar un NullPointerException.
