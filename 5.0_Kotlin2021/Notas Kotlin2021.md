@@ -817,3 +817,100 @@ fun main(args: Array<String>) {
     println(valorDelSet)
 }
 ````
+
+## ¿Qué son las funciones?
+
+Una función es un código que se ejecuta cada vez que lo llamamos. Las hemos venido utilizando anteriormente, pero ahora
+vamos a profundizar. Es un código que una vez que le pasas unos parámetros ejecuta ese código una vez más y devuelve un
+resultado.
+
+### Sintaxis de una función
+
+Las funciones más básicas se componen de 4 partes. Empecemos con el **nombre**.
+
+Toda función empieza con la palabra reservada **fun** y luego el nombre de la función.
+
+Luego tenemos los **parámetros**, que son las variables que le damos a la función para que las use en el código que
+tiene dentro.
+
+Sigue el tipo de retorno. Es decir el tipo que va a ejecutar una vez ejecutada la función.
+
+Para terminar tenemos el código que vamos a ejecutar cuando llamemos la función.
+
+- Palabra reservada **fun**.
+- Nombre de la función.
+- Parámetros: Son las variables que le daremos a la función para que las use en el código que ejecuta internamente.
+- Tipo de retorno: Puede tener o no un valor de retorno.
+- Código: Son las instrucciones que se van a ejecutar al llamar a la función.
+
+````kotlin
+fun suma(primerValor: Int, segundoValor: Int): Int {
+    return primerValor + segundoValor
+}
+````
+
+Cuando queremos devolver algo de nuestra función usamos la keyword **return**. Caso contario cuando no queremos devolver
+nada de nuestra función. Kotlin regresaría **Unit**.
+
+Ejemplo de función que no devuelve nada:
+
+````kotlin
+fun imprimir(nombre: String, apellidos: String) {
+    print("Mi nombre es $nombre y mi apellido es $apellido")
+}
+````
+
+## Funciones y funciones de extensión
+
+````kotlin
+fun main(args: Array<String>) {
+    val fraseAleatoria = "La frase mas bacán del multiverso"
+    imprimirFrase(randomCase(fraseAleatoria))
+}
+
+// devuelve Unit
+fun imprimirFrase(frase: String) {
+    println("Tu frase es: $frase")
+}
+
+// Las funciones hay que declararlas fuera
+fun randomCase(frase: String): String {
+    val numeroAleatorio = 0..99
+    val resultadoAleatorio = numeroAleatorio.random()
+    return if (resultadoAleatorio.rem(2) == 0) {
+        frase.toUpperCase()
+    } else {
+        frase.toLowerCase()
+    }
+}
+````
+
+### Funciones de extención
+
+Las funciones de extensión nos permiten extender del comportamiento del tipo de la función y utilizarlas como si fuesen
+frases directamente de ese tipo. Para ello tenemos que especificar el tipo al momento de crear una función
+
+Mismo código pero con funciones de extensión:
+
+````kotlin
+fun main(args: Array<String>) {
+    val fraseAleatoria = "La frase mas bacán del multiverso".randomCase()
+    imprimirFrase(fraseAleatoria)
+}
+
+// devuelve Unit
+fun imprimirFrase(frase: String) {
+    println("Tu frase es: $frase")
+}
+
+// Las funciones hay que declararlas fuera
+fun String.randomCase(): String {
+    val numeroAleatorio = 0..99
+    val resultadoAleatorio = numeroAleatorio.random()
+    return if (resultadoAleatorio.rem(2) == 0) {
+        this.toUpperCase()
+    } else {
+        this.toLowerCase()
+    }
+}
+````
