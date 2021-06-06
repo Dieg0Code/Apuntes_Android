@@ -1044,3 +1044,19 @@ fun main(args: Array<String>) {
 ````
 
 Esto nos ayuda a protegernos de los errores inesperados en nuestra aplicación.
+
+### with
+
+El **with** nos permite acceder directamente a las propiedades de una variable que le pasamos como parámetro, de esta
+forma podemos evitar repertir llamar a la variable en varias líneas, sino que simplemente usamos **this** o utilizamos
+directamente sus propiedades.
+
+````kotlin
+fun main(args: Array<String>) {
+    val colores = listOf("Azul", "Amarillo", "Rojo")
+    with(colores) {
+        println("Nuestros colores son: $this")
+        println("Esta lista tiene una cantidad de colores de $size")
+    }
+}
+````
