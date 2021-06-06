@@ -1027,4 +1027,20 @@ estar repitiendo el nombre de la variable, o como la función **let**:
 ### let
 
 Nos permite combinado con el operador de **safe calls** ejecutar un código **solo cuando una variable nullable no es
-nula**, para evitar un NullPointerException.
+nula**, y ejecutar ese código solo cuando la variable tenga un valor asignado, para evitar un NullPointerException.
+
+````kotlin
+fun main(args: Array<String>) {
+    var nombre: String? = null
+    // se ejecuta cuando la variable nullable no es nula
+    nombre?.let { valor ->
+        println("el nombre no es nulo, es $valor")
+    }
+    nombre = "Diego"
+    nombre.let { valor ->
+        println("El nombre no es nulo, es $valor")
+    }
+}
+````
+
+Esto nos ayuda a protegernos de los errores inesperados en nuestra aplicación.
