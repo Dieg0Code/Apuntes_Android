@@ -1109,3 +1109,23 @@ recomendable usar la función **apply** cada vez que puedas para convertir los t
 Esta función se utiliza muchísimo, sobre todo con los safe cast, porque cuando trabajas con código de terceros o con
 librerías en Java no sabes si te puedes encontrar con un nulo o no, y modificar esas propiedades solo cuando estas
 seguro de que no va a ser nulo es una gran ayuda.
+
+### Also
+
+**Also** nos permite obtener una variable, luego ejecutar un código con esa variable y luego devolverla como parámetro
+para que pueda volver a ser utilizada por una función más adelante.
+
+````kotlin
+fun main(args: Array<String>) {
+    val moviles = mutableListOf("Google Pixel 2xl", "Google Pixel 4a", "Huawei Redmi 9", "Xiaomi mi a3").also { lista ->
+        println("El valor original de la lista es $lista")
+    }.asReversed() // esta función voltea la lista
+    println(moviles)
+}
+````
+
+Las funciones **apply** y **also** devuelven el objeto contexto directamente. Mientras que **let**, **run** y **with**
+retornan el último valor de la lambda
+
+La función **also** nos permite realizar una operación, como imprimir el estado de esta y luego pasarla como parámetro a
+la siguiente función, haciendo un encadenamiento de funciones.
