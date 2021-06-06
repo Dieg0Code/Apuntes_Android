@@ -1076,3 +1076,36 @@ fun main(args: Array<String>) {
     println(moviles)
 }
 ````
+
+### Apply
+
+La función **Apply** nos permite realizar operaciones sobre una variable y luego devolver el valor, al contrario de la
+función run en la que tuvimos que devolver el this al final, en este caso no hace falta ya que la función **apply** lo
+devuelve automáticamente, también si la combinamos con un una función de safe cast se crea una función **apply segura**
+esto a causa de que la variable nullable que teníamos no puede ejecutar ese cambio de propiedades a menos que se le haya
+asignado un valor a la variable, esto nos permite evitar NullPointersExceptions.
+
+````kotlin
+fun main(args: Array<String>) {
+    // lo mismo que la function run pero sin el this
+    val moviles = mutableListOf("Google Pixel 2xl", "Google Pixel 4a", "Huawei Redmi 9", "Xiaomi mi a3").apply {
+        removeIf { movil -> movil.contains("Google") }
+    }
+    println(moviles)
+    // la función apply puede también funcionar como el with, solo que esta acepta nullables
+
+    val colores: MutableList<String>? =
+        mutableListOf("Amarillo", "Azul", "Rojo") // las listas pueden ser nulas completas o tener valores nulos dentro
+    colores?.apply {
+        println("Nuestros colores son $this")
+        println("La cantidad colores es $size")
+    }
+}
+````
+
+Esto nos ayuda a evitar estar accediendo a propiedades o modificando variables en el caso de que sea nullable. Es
+recomendable usar la función **apply** cada vez que puedas para convertir los tipos nullables a tipos no nullables.
+
+Esta función se utiliza muchísimo, sobre todo con los safe cast, porque cuando trabajas con código de terceros o con
+librerías en Java no sabes si te puedes encontrar con un nulo o no, y modificar esas propiedades solo cuando estas
+seguro de que no va a ser nulo es una gran ayuda.
