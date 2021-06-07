@@ -1128,4 +1128,5 @@ Las funciones **apply** y **also** devuelven el objeto contexto directamente. Mi
 retornan el último valor de la lambda
 
 La función **also** nos permite realizar una operación, como imprimir el estado de esta y luego pasarla como parámetro a
-la siguiente función, haciendo un encadenamiento de funciones.
+la siguiente función, haciendo un encadenamiento de funciones. Super util para depurar el estado de la variable en cada
+del código.
