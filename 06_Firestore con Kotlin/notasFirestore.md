@@ -47,3 +47,47 @@ Las mediciones son muy importantes cuando desarrollas un producto de software pa
 Aquí queremos mirar todo el comportamiento de la aplicación y cómo lo podemos ajustar.
 
 ![Firebase analitycs](img/FB_analitycs.png)
+
+### Integrando Firebase al Proyecto
+
+Para integrar Firebase al proyecto debemos ir a la pagina <https://firebase.google.com>, luego ir a la consola (el botón está en la esquina superior derecha), luego creamos un nuevo proyecto. En este caso el applicationId será **"com.platzi.android.firestore"**, en las configuraciones dejamos todo por defecto.
+
+Luego elegimos un proyecto android, descargamos el archivo .json, lo arrastramos a la carpeta "app".
+
+En el **build.gradle(Proyect)** agregamos en **dependencies**:
+
+```gradle
+classpath 'com.google.gms:google-services:4.3.8'
+```
+
+También debemos fijarnos que en **buildscript** esté google().
+
+Luego en **build.gradle(Module)** agregamos en **dependencies**:
+
+```gradle
+// Import the Firebase BoM
+implementation platform('com.google.firebase:firebase-bom:28.1.0')
+// Add the dependency for the Firebase SDK for Google Analytics
+implementation 'com.google.firebase:firebase-analytics-ktx'
+```
+
+Luego sincronizamos y listo, ya debería estar integrado Firebase a nuestro proyecto.
+
+En caso de que te de un error del tipo:
+
+```txt
+Invoke-customs are only supported starting with android 0 --min-api 26
+```
+
+El cual fue mi caso, debes agregar en **build.gradle(Module)** en la sección **android{}** lo siguiente:
+
+```gradle
+compileOptions {
+    sourceCompatibility JavaVersion.VERSION_1_8
+    targetCompatibility JavaVersion.VERSION_1_8
+}
+```
+
+Te dejo el hilo de StackOverflow [aquí](https://stackoverflow.com/questions/49891730/invoke-customs-are-only-supported-starting-with-android-0-min-api-26) por si quieres mas info sobre el error.
+
+Y ahora si que si debería estar todo ok 😄.
