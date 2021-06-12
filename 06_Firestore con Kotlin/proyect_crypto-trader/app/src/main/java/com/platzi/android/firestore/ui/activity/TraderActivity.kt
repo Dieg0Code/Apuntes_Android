@@ -6,11 +6,6 @@ import com.google.android.material.snackbar.Snackbar
 import com.platzi.android.firestore.R
 import kotlinx.android.synthetic.main.activity_trader.*
 
-
-/**
- * @author Santiago Carrillo
- * 2/14/19.
- */
 class TraderActivity : AppCompatActivity() {
 
 

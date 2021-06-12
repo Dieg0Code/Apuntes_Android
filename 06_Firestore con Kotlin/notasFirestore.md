@@ -91,3 +91,20 @@ compileOptions {
 Te dejo el hilo de StackOverflow [aquí](https://stackoverflow.com/questions/49891730/invoke-customs-are-only-supported-starting-with-android-0-min-api-26) por si quieres mas info sobre el error.
 
 Y ahora si que si debería estar todo ok 😄.
+
+### Autenticación Anónima Firebase
+
+La autenticación anónima nos permite crear cuentas temporales las cuales pueden acceder a datos protegidos por reglas de seguridad.
+
+Vamos a implementar la autenticación anónima de Firebase Authentication para crear cuentas temporales que pueden acceder a datos protegidos por reglas de seguridad.
+
+Para importar la librería de Firebase Authentication debes copiar y pegar el link de autenticación en la sección de dependencias del archivo `build.gradle` y sincronizar tu proyecto para descargar la librería para utilizarla en nuestro proyecto:
+
+```gradle
+dependencies: {
+    ...
+    implementation 'com.google.firebase:firebase-core:16.0.7'
+    implementation 'com.google.firebase:firebase-auth:16.1.0'
+    ...
+}
+```
