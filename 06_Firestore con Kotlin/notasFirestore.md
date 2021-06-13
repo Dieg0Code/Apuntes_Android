@@ -108,3 +108,27 @@ dependencies: {
     ...
 }
 ```
+
+### Conociendo el modelo de datos de Cloud Firestore
+
+Cloud Firestore es una base de datos no relacional muy flexible.
+
+Tenemos un modelo de datos basado en dos tipos de objetos: Los **Documentos** (diccionarios de datos que podemos guardar y trabajar en forma de llaves y valores) y **Colecciones** (conjuntos de documentos).
+
+Los documentos pueden ser sencillos o complejos, es decir, con llaves y valores y modelos de datos más avanzados; listas y objetos con más documentos en forma de llaves y valores o, incluso, más listas de documentos.
+
+También podemos trabajar con **referencias** para acceder a nuestros documentos con "atajos" y realizar operaciones.
+
+Nos permiten interactuar con una colección o documento especifico para realizar actualizaciones o lecturas
+
+Ej:
+
+```Kotlin
+val bitcoinDocumentRef = db.collection("cryptos").document("bitcoin")
+
+val bitcoinDocumentRef = db.document("cryptos/bitcoin")
+
+val cryptosCollectionRef = db.collection("cryptos")
+```
+
+Recuerda que entre menos complejo es el modelo de tu base de datos mejor será su desempeño.
