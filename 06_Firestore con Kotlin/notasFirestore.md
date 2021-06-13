@@ -143,7 +143,7 @@ Los **índices** son la forma que Firebase y muchas otras bases de datos usan pa
 - **Compuestos**: Almacenan el orden de todos los documentos en una colección que contiene *subcampos*. Usamos los mismos comparadores pero podemos hacer operaciones más complejas.
 
 ```kotlin
-citiesRef.where("name"， "==", "Bogotá")
+citiesRef.where("name"， "==", "Santiago")
 
 citiesRef.where("population", "<", 100000)
 
@@ -155,11 +155,11 @@ citiesRef.where("regions", "array-contains", "Amazonas")
 Almacenan un mapeo ordenado de todos los documentos en una colección.
 
 ```kotlin
-citiesRef.where("country", "==", "Colombia").orderBy("population", "asc")
+citiesRef.where("country", "==", "Chile").orderBy("population", "asc")
 
-citiesRef.where("country", "==", "Colombia").where("population", "<", 3000)
+citiesRef.where("country", "==", "Chile").where("population", "<", 3000)
 
-citiesRef.where("country", "==", "Colombia").orderBy("population", ">", 3000)
+citiesRef.where("country", "==", "Chile").orderBy("population", ">", 3000)
 
 
 ```
@@ -171,3 +171,120 @@ También es muy importante controlar la **auto indexación**, algunos índices q
 - **Campos simples**(no colecciones): Dos índices de campo único (ascendente y descendente).
 - **Diccionarios**: Dos índices de campo único (ascendente y descendente) por cada uno de los subcampos.
 - **Colecciones**: Un índice de tipo `array_contains`.
+
+### Creación y gestión de datos en Firestore
+
+#### Creación de Documentos
+
+```Kotlin
+val city = HashMap<String, Any>()
+city["name"] = "Santiago"
+city["region"] = "Region metropolitana"
+city["country"] = "Chile"
+
+db.collection("cities").document("CL")
+    .set(city)
+    .addOnSuccessListener {
+        Log.d(TAG, "DocumentSnapshot creado exitosamente")
+    }
+    .addOnFailureListener { e ->
+        Log.w(TAG, "Error escribiendo documento", e)
+    }
+```
+
+Si el documento no existe será creado. Si el documento existe será sobrescrito.
+
+#### Merge de Documentos
+
+```kotlin
+// Actualizar un campo, el documento "CL" es creando si no existe.
+val data = HashMap<String, Any>()
+data["capital"] = true
+
+db.collection("cities").document("CL")
+    .set(data, SetOptions.merge())
+```
+
+#### Tipos de Datos
+
+```kotlin
+val docData = HashMap<String, Any>()
+docData["stringExample"] = "Hello world!"
+docData["booleanExample"] = true
+docData["numberExample"] = 3.14159265
+docData["dateExample"] = Date()
+docData["listExample"] = arrayLisOf(1, 2, 3)
+docData["nullExample"] = null
+
+val nestData = HashMap<String, Any>()
+nestedData["a"] = 5
+nestedData["b"] = true
+
+docData["objectExample"] = nestedData
+```
+
+#### Agregar un Documento
+
+Nuevo Documento con ID definido:
+
+```kotlin
+db.collection("cities")
+    .document("new-city-id").set(data) //data es el objeto que queremos guardar en la db
+```
+
+Nuevo Documento con ID Autogenerado:
+
+```kotlin
+val data = HasMap<String, Any>()
+data["name"] = "Santiago"
+data["country"] = "Chile"
+
+db.collection("cities")
+    .add(data)
+```
+
+#### Actualizar un Documento
+
+```kotlin
+val bogotaRef = db.collection("cities").document("BOG")
+
+// Actualizar el campo "isCapital" de la ciudad 'BOG'
+bogotaRef
+    .update("capital", true) // campo y valor
+    .addOnSuccessListener {
+        Log.d(TAG, "DocumentSnapshot successfully updated!")
+    }
+    .addOnFailureListener {
+        e -> Log.w(TAG, "Error updating document", e)
+    }
+```
+
+#### Actualizar Subdocumentos
+
+```kotlin
+// Asuma que el documento contiene:
+// { name: "Frank",
+//   favorites: {food: "Pizza", color: 
+//   "Blue", subjetc: "recess"},
+//   age: 12
+// }
+
+// Para actualizar el atributo age y favorite color:
+db.collection("users").document("frank")
+    .update(
+        "age", 13,
+        "favorites.color", "Red"
+    )
+```
+
+#### Actualizar Listas
+
+```kotlin
+val bogotaRef = db.collection("cities").document("BOG")
+
+// Agregar una nueva región al arreglo "regions".
+colombiaRef.update("regions", FieldValue.arrayUnion("Amazonas"))
+
+// Remover una región del arreglo "regions".
+colombiaRef.update("regions", FieldValue.arrayRemove("Amazonas"))
+```
