@@ -132,3 +132,42 @@ val cryptosCollectionRef = db.collection("cryptos")
 ```
 
 Recuerda que entre menos complejo es el modelo de tu base de datos mejor será su desempeño.
+
+### Gestión de Índices es Firestore
+
+Los **índices** son la forma que Firebase y muchas otras bases de datos usan para realizar búsquedas y consultas de forma eficiente y escalable. Gracias a los índices nos ahorramos tiempo y trabajo al evitar buscar nuestra información dato por dato en toda nuestra base de datos, que resultaría  algo lento y poco escalable.
+
+#### Tipos de índices
+
+- **Campo único**: Almacenan el orden de todos los documentos en una colección de un sólo campo. Podemos realizar consultas con los comparadores `<`, `<=`, `==`, `>=` y `array_contains`.
+- **Compuestos**: Almacenan el orden de todos los documentos en una colección que contiene *subcampos*. Usamos los mismos comparadores pero podemos hacer operaciones más complejas.
+
+```kotlin
+citiesRef.where("name"， "==", "Bogotá")
+
+citiesRef.where("population", "<", 100000)
+
+citiesRef.where("regions", "array-contains", "Amazonas")
+```
+
+#### Índices compuestos
+
+Almacenan un mapeo ordenado de todos los documentos en una colección.
+
+```kotlin
+citiesRef.where("country", "==", "Colombia").orderBy("population", "asc")
+
+citiesRef.where("country", "==", "Colombia").where("population", "<", 3000)
+
+citiesRef.where("country", "==", "Colombia").orderBy("population", ">", 3000)
+
+
+```
+
+Los **modos** nos ayudan a organizar nuestros índices de forma ascendente, descendente o con el modo `array_contains` para comprobar la existencia de nuestros índices en una colección.
+
+También es muy importante controlar la **auto indexación**, algunos índices que Firestore crea por defecto de la siguiente manera:
+
+- **Campos simples**(no colecciones): Dos índices de campo único (ascendente y descendente).
+- **Diccionarios**: Dos índices de campo único (ascendente y descendente) por cada uno de los subcampos.
+- **Colecciones**: Un índice de tipo `array_contains`.
