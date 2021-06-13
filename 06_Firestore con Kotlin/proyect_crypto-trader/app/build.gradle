@@ -42,7 +42,10 @@ dependencies {
     // Add the dependency for the Firebase SDK for Google Analytics
     implementation 'com.google.firebase:firebase-analytics-ktx'
     implementation 'com.google.firebase:firebase-core:19.0.0'
+    // auth
     implementation 'com.google.firebase:firebase-auth:21.0.1'
+    // Firestore
+    implementation 'com.google.firebase:firebase-firestore:23.0.1'
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test:runner:1.4.0-beta02'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0-beta02'
