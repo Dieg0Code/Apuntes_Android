@@ -143,7 +143,7 @@ Los **índices** son la forma que Firebase y muchas otras bases de datos usan pa
 - **Compuestos**: Almacenan el orden de todos los documentos en una colección que contiene *subcampos*. Usamos los mismos comparadores pero podemos hacer operaciones más complejas.
 
 ```kotlin
-citiesRef.where("name"， "==", "Santiago")
+citiesRef.where("name","==", "Santiago")
 
 citiesRef.where("population", "<", 100000)
 
@@ -288,3 +288,95 @@ colombiaRef.update("regions", FieldValue.arrayUnion("Amazonas"))
 // Remover una región del arreglo "regions".
 colombiaRef.update("regions", FieldValue.arrayRemove("Amazonas"))
 ```
+
+### Creación de Datos en Firestore
+
+Para agregar datos a firestore a través de nuestra pantalla de autenticacion de forma anónima:
+
+LoginActivity.kt
+
+```kotlin
+fun onStartClicked(view: View) {
+        view.isEnabled = false
+        auth.signInAnonymously().addOnCompleteListener { task ->
+            if (task.isSuccessful) {
+            val username = username.texttoString()
+            val user = User()
+            user.username = username
+            saveUserAndStartMainActivity(userview)
+        } else {
+            showErrorMessage(view)
+            view.isEnabled = true
+        }
+    }
+}
+
+    private fun saveUserAndStartMainActivity(user: User, view: View) {
+        firestoreService.setDocument(user, // create a new user
+            USERS_COLLECTION_NAME, // "users"
+            user.username, // username
+            object : Callback<Void> {
+                override fun onSuccess(result: Void?) {
+                    startMainActivity(user.username)
+                }
+
+                override fun onFailed(exception: Exception) {
+                    showErrorMessage(view)
+                    Log.e(TAG, "error", exception)
+                    view.isEnabled = true
+                }
+            })
+    }
+```
+
+Asi nos podremos registrar con solo un nombre de usuario en la base de datos.
+
+![auth](img/FB_auth.png)
+
+Si al momento de compilar te da un error del tipo "`Cannot fit requested classes in a Single Dexfile(# methods: n > 65536)`" debes ir al archivo **build.gradle(Module)** y agregar en la parte de **defaultConfig{  }** "`multiDexEnabled true`", debería verse así:
+
+```gradle
+ defaultConfig {
+        applicationId "com.platzi.android.firestore"
+        minSdkVersion 16
+        targetSdkVersion 30
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        multiDexEnabled true // <--
+    }
+```
+
+Tambien en **dependencies{  }** debes agregar:
+
+```gradle
+implementation 'androidx.multidex:multidex:2.0.1'
+```
+
+Y sincronizar
+
+### La explicación del problema:
+
+Por default los proyectos en android tienen un limite de métodos que pueden ser invocados dentro de un mismo archivo de código(Dalvik Executable (DEX)), este número es precisamente 65536, esto debido a que una APK que es compatible con versiones inferiores a android 5(API 21), trabaja con Dalvik, y ese ejecutable esta limitado a 65536 métodos, esto incluye el framework de android, dependencias y nuestro código escrito dentro de nuestro proyecto.
+
+Técnicamente hablando, el término “kilo”, y su símbolo, “k”, hacen referencia a 1,024, por lo tanto, 64 x 1,024 es igual a 65536, exacto, nuestro número clave en este error. Este límite es denominado “límite de referencia de 64k”.
+
+*el post completo [aquí](https://frogames.es/solucion-a-error-con-el-dexfile-en-android-studionull-cannot-fit-requested-classes-in-a-single-dexfil).*
+
+También debemos modificar las reglas de escritura de Firestore.
+
+el código debería verse asi:
+
+```firestore
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /{document=**} {
+      allow read, write: if true;
+    }
+  }
+}
+```
+
+Con esto ya deberiamos poder agregar la coleccion **user** con el **username** a nuestra base de datos.

@@ -8,6 +8,7 @@ apply plugin: 'com.google.gms.google-services'
 
 android {
     compileSdkVersion 30
+
     defaultConfig {
         applicationId "com.platzi.android.firestore"
         minSdkVersion 16
@@ -15,12 +16,17 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        multiDexEnabled true
     }
+
     buildTypes {
+
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
+
     }
 
     compileOptions {
@@ -46,6 +52,8 @@ dependencies {
     implementation 'com.google.firebase:firebase-auth:21.0.1'
     // Firestore
     implementation 'com.google.firebase:firebase-firestore:23.0.1'
+    //multidex
+    implementation 'androidx.multidex:multidex:2.0.1'
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test:runner:1.4.0-beta02'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0-beta02'

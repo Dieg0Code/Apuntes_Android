@@ -9,6 +9,7 @@ const val USERS_COLLECTION_NAME = "users"
 
 class FirestoreService(val firebaseFirestore: FirebaseFirestore) {
 
+    // add a document to firestore
     fun setDocument(data: Any, collectionName: String, id: String, callback: Callback<Void>) {
         firebaseFirestore.collection(collectionName).document(id).set(data)
             .addOnSuccessListener { callback.onSuccess(null) }
