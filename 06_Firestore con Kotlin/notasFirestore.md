@@ -379,4 +379,58 @@ service cloud.firestore {
 }
 ```
 
-Con esto ya deberiamos poder agregar la coleccion **user** con el **username** a nuestra base de datos.
+Con esto ya deberíamos poder agregar la colección **user** con el **username** a nuestra base de datos.
+
+### Transacciones y Escritura Batch en Firestore
+
+Son dos herramientas muy importantes para hacer operaciones como migraciones de datos.
+
+```kotlin
+val bogDocRef = db.collection("cities").document("BOG")
+
+db.runTransaction { transaction ->
+    val snapshot = transaction.get(bogDocRef)
+    val newPopulation = snapshot.getDouble("population")!! + 1
+    transaction.update(bogDocRef, "population", newPopulation)
+    null
+}.addOnSuccessListener { Log.d(TAG, "Transaction success!") }
+    .addOnFailureListener { e -> Log.w(TAG, "Transaction failure"), e }
+```
+
+Las transacciones son un conjunto de operaciones de lectura y escritura de uno o mas documentos.
+
+### Escritura en Batch
+
+Las escrituras en batch a diferencia de las transacciones son operaciones que son solo de escritura.
+
+Para hacer un batch:
+
+```kotlin
+// Obtener un nuevo batch de escritura
+val batch = db.batch()
+
+// Asignar el valor de 'BOG'
+val bogotaRef = db.collection("cities").document("BOG")
+batch.set(bogotaRef, City())
+
+// Actualizar el atributo population de 'BOG'
+val bogotaRef = db.collection("cities").document("BOG")
+batch.update(bogotaRef, "population", 1000000L)
+
+// Eliminar la ciudad 'BOG'
+val bogotaRef = db.collection("cities").document("BOG")
+batch.delete(bogotaRef)
+
+// Realizar Commit del batch
+batch.commit().addOnCompleteListener {}
+```
+
+### ¿Cuando usar Transacciones o Batch?
+
+1. Migración de datos.
+2. Muchas operaciones simultáneas de escritura sobre una misma colección.
+
+Cloud Firestore admite operaciones atómicas para la lectura y la escritura de datos. En un conjunto de operaciones atómicas, todas las operaciones se aplican de manera correcta o no es aplica ninguna de ellas. Cada transacción o escritura en lote puede escribir un máximo de 500 documentos.
+
+- **Transacciones**: Una transacción es un conjunto de operaciones de lectura y escritura.
+- **Escritura en lotes**: Una escritura en lotes es un conjunto de operaciones de escritura en uno o más documentos.

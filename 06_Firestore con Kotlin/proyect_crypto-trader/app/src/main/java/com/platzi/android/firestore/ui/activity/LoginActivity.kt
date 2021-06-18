@@ -68,7 +68,8 @@ class LoginActivity : AppCompatActivity() {
                     Log.e(TAG, "error", exception)
                     view.isEnabled = true
                 }
-            })
+            }
+        )
     }
 
     private fun startMainActivity(username: String) {
