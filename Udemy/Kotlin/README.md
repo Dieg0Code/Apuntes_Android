@@ -58,7 +58,7 @@ val age: Int = null; // Error
 
 A diferencia de Java en donde se puede hacer esto sin problemas. Esto está hecho así para evitar los `NullPointerException` los cuales son muy comunes en Java.
 
-Aunque también hay una forma de declarar variables que pueden ser `null` en Kotlin pero esto debe hacerse de forma explícit con el operador `?`.
+Aunque también hay una forma de declarar variables que pueden ser `null` en Kotlin pero esto debe hacerse de forma explícita con el operador `?`.
 
 ```kotlin
 val str: String? = null;
@@ -113,7 +113,7 @@ Usar el operador `?` de esta forma es similar a un `if`, "si la variable no es `
 
 ### Elvis Operator
 
-Kotlin tiene un operador llamado "Elvis Operator" que es un operador que nos permite saber si una variable es `null` o no.
+Kotlin tiene un operador llamado "Elvis Operator" `?:` que es un operador que nos permite saber si una variable es `null` o no, de ser null le asignamos el valor que definamos.
 
 ```kotlin
 val name: String? = "Diego";
@@ -123,3 +123,81 @@ val length = name?.length ?: -1;
 Es como decir "verifica si la variables es null, de ser así entonces devuelve el valor -1, de lo contrario devuelve la longitud de la variable".
 
 Kotlin es interoperable con Java, es decir podemos mesclar Kotlin con Java y viceversa, este tipo de operadores fueron creados pensando en esto.
+
+## Condicionales: expresión if
+
+Una condicional `if` nos permite evaluar una condición y ejecutar una acción dependiendo de si es verdadero o falso.
+
+Por ejemplo:
+
+```kotlin
+val age: Int = 25;
+
+if (age > 18) {
+    println("Eres mayor de edad");
+} else {
+    println("Eres menor de edad");
+}
+```
+
+También podemos concatenar varios `if`s, pero solo podemos usar un `else` en la última condición.
+
+```kotlin
+val age: Int = 25;
+
+if (age > 18) {
+    println("Eres mayor de edad");
+} else if (age == 18) {
+    println("Eres igual a 18");
+} else {
+    println("Eres menor de edad");
+}
+```
+
+`else if` es una condición más, sirve para concatenar varias condiciones de ser necesario.
+
+En Kotlin las condiciones if son expresiones, esto quiere decir que el resultado que resuelvan puede ser asignado a una variable.
+
+```kotlin
+val age: Int = 25;
+
+val res = if (age > 18) {
+    "Eres mayor de edad"
+} else {
+    "Eres menor de edad"
+}
+
+println(res); // Eres mayor de edad
+```
+
+El valor que tome la variable `res` será el que se resuelva en la expresión.
+
+El valor que tome la variable debe ser un tipo de dato que pueda ser asignado a la variable, por ejemplo si la expresión fuera la siguiente:
+
+```kotlin
+val age: Int = 25;
+
+val res = if (age > 18) {
+    println("Eres mayor de edad");
+} else {
+    println("Eres menor de edad");
+}
+```
+
+La variable no podría tomar el valor de la expresión que resulte del if. Para solucionarlo podemos hacer lo siguiente:
+
+```kotlin
+val age: Int = 25;
+
+val res = if (age > 18) {
+    println("Eres mayor de edad");
+    "Eres mayor de edad"
+} else {
+    println("Eres menor de edad");
+    "Eres menor de edad"
+}
+```
+
+De esta forma la variable toma el valor del string que se resuelva en la expresión.
+
+Como dato, en Kotlin las expresiones que no retornan nada en realidad estan retornando el valor `Unit` que es un tipo de dato que no tiene ningún valor, es como decir una expresión vacía.
