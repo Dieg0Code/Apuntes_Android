@@ -134,9 +134,9 @@ Por ejemplo:
 val age: Int = 25;
 
 if (age > 18) {
-    println("Eres mayor de edad");
+    println("Eres mayor de edad")
 } else {
-    println("Eres menor de edad");
+    println("Eres menor de edad")
 }
 ```
 
@@ -146,11 +146,11 @@ También podemos concatenar varios `if`s, pero solo podemos usar un `else` en la
 val age: Int = 25;
 
 if (age > 18) {
-    println("Eres mayor de edad");
+    println("Eres mayor de edad")
 } else if (age == 18) {
-    println("Eres igual a 18");
+    println("Eres igual a 18")
 } else {
-    println("Eres menor de edad");
+    println("Eres menor de edad")
 }
 ```
 
@@ -178,9 +178,9 @@ El valor que tome la variable debe ser un tipo de dato que pueda ser asignado a 
 val age: Int = 25;
 
 val res = if (age > 18) {
-    println("Eres mayor de edad");
+    println("Eres mayor de edad")
 } else {
-    println("Eres menor de edad");
+    println("Eres menor de edad")
 }
 ```
 
@@ -190,14 +190,114 @@ La variable no podría tomar el valor de la expresión que resulte del if. Para 
 val age: Int = 25;
 
 val res = if (age > 18) {
-    println("Eres mayor de edad");
+    println("Eres mayor de edad")
     "Eres mayor de edad"
 } else {
-    println("Eres menor de edad");
+    println("Eres menor de edad")
     "Eres menor de edad"
 }
 ```
 
 De esta forma la variable toma el valor del string que se resuelva en la expresión.
 
-Como dato, en Kotlin las expresiones que no retornan nada en realidad estan retornando el valor `Unit` que es un tipo de dato que no tiene ningún valor, es como decir una expresión vacía.
+Como dato, en Kotlin las expresiones que no retornan nada en realidad están retornando el valor `Unit` que es un tipo de dato que no tiene ningún valor, es como decir una expresión vacía.
+
+## Condicionales: expresión when
+
+La expresión `when` es el equivalente a un `switch` en otros lenguajes, nos permite evaluar una condición y ejecutar una serie de acciones dependiendo de la condición.
+
+```kotlin
+val price = 29
+
+when (price) {
+    0 -> println("El precio es 0")
+    in 1..10 -> println("El precio está entre 1 y 10")
+    else -> println("El precio es mayor a 10")
+}
+```
+
+Es mucho más conciso que usar una serie de `else if`s para evaluar una condición, también nos permite evaluar entre rangos de valores, por ejemplo:
+
+```kotlin
+val price = 29
+
+when (price) {
+    in 1..10 -> println("El precio está entre 1 y 10")
+    in 11..20 -> println("El precio está entre 11 y 20")
+    in 21..30 -> println("El precio está entre 21 y 30")
+    else -> println("El precio es mayor a 30")
+}
+```
+
+También cabe mencionar que tenemos el `else` que es una condición que se ejecuta cuando ninguna de las condiciones anteriores se cumple.
+
+También podemos hacer operaciones dentro de las condiciones, por ejemplo:
+
+```kotlin
+val price = 29
+
+when (price) {
+    in 1..10 -> println("El precio está entre 1 y 10")
+    in 11..20 -> println("El precio está entre 11 y 20")
+    in 21..30 -> println("El precio está entre 21 y 30")
+    10 + 20 -> println("El precio es mayor a 30")
+    else -> {
+        println("El precio es mayor a 30")
+        println("El precio es $price")
+    }
+}
+```
+
+También podemos ver si la condición no esta dentro de un rango negando con el operador `!` al igual que con las expresiones lógicas.
+
+```kotlin
+val price = 29
+
+when (price) {
+    !in 1..10 -> println("El precio no está entre 1 y 10")
+    !in 11..20 -> println("El precio no está entre 11 y 20")
+    !in 21..30 -> println("El precio no está entre 21 y 30")
+    else -> println("El precio está entre 1 y 10")
+}
+```
+
+A diferencia de `switch` en otros lenguajes, el `when` no necesita que pongamos un `break` después de cada condición, simplemente ejecuta la primera condición que se cumpla.
+
+También podemos usar la expresión `when` sin ninguna variable a evaluar, si hacemos esto lo que pongamos a la izquierda de `->` debe resultar en un valor booleano.
+
+```kotlin
+val price 
+
+when {
+    price > 10 -> println("El precio es mayor a 10")
+    price < 10 -> println("El precio es menor a 10")
+    else -> println("El precio es igual a 10")
+}
+```
+
+Al igual que `if`, `when` también es una expresión, por lo que podemos asignar el valor que resulte de la expresión a una variable.
+
+```kotlin
+val price = 29
+
+val res = when (price) {
+    in 1..10 -> "El precio está entre 1 y 10"
+    in 11..20 -> "El precio está entre 11 y 20"
+    in 21..30 -> "El precio está entre 21 y 30"
+    else -> "El precio es mayor a 30"
+}
+
+println(res) // El precio está entre 21 y 30
+```
+
+```kotlin
+val price = 39
+
+val x = when {
+    price <= 19 -> "Vendido"
+    price <= 29 -> "En venta"
+    else -> "No vendido"
+}
+
+println(x) // No vendido
+```
