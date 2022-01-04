@@ -76,11 +76,11 @@ str?.length; // Error
 
 No podemos obtener la longitud de un String si esta variable en realidad es `null`.
 
-Esto no puede parecer muy importante, pero en un programa real, con cientos de variables se hace muy difícil seguir el rastro de todas las variables y ver si es que están inicializadas o no.
+Esto no puede parecer muy importante, pero en un programa real, con cientos de variables se hace muy difícil seguir el rastro de cada una de ellas y ver si es que están inicializadas o no.
 
-En Java no podemos saber esto ya que el lenguaje no fue diseñado para tomar en cuanta estos posibles errores, sin embargo Kotlin nos advertirá de esto al momento de compilar el programa.
+En Java no podemos saber esto ya que el lenguaje no fue diseñado para tomar en cuenta estos posibles errores, sin embargo Kotlin nos advertirá de esto al momento de compilar el programa.
 
-Kotlin sin embargo nos provee formas de seguir usando las variables que son `null` sin problemas con el operador `!!`, el cual es como decir, "confiá en mi, este valor no es `null`!!".
+Kotlin de todas maneras, nos provee formas de seguir usando las variables que son `null` sin problemas con el operador `!!`, el cual es como decir, "confiá en mi, este valor no es `null`!!".
 
 ```kotlin
 val str: String? = null;
@@ -216,7 +216,7 @@ when (price) {
 }
 ```
 
-Es mucho más conciso que usar una serie de `else if`s para evaluar una condición, también nos permite evaluar entre rangos de valores, por ejemplo:
+Es mucho más conciso que usar una serie de `else if`'s para evaluar una condición, también nos permite evaluar entre rangos de valores usando `in`, por ejemplo:
 
 ```kotlin
 val price = 29
@@ -229,7 +229,7 @@ when (price) {
 }
 ```
 
-También cabe mencionar que tenemos el `else` que es una condición que se ejecuta cuando ninguna de las condiciones anteriores se cumple.
+También cabe mencionar que tenemos el `else` que es una condición que se ejecuta cuando ninguna de las condiciones anteriores se cumple, similar a como funciona en un `if`.
 
 También podemos hacer operaciones dentro de las condiciones, por ejemplo:
 
@@ -300,4 +300,171 @@ val x = when {
 }
 
 println(x) // No vendido
+```
+
+## Collections
+
+Las colecciones en Kotlin están construidas sobre las colecciones de Java, por lo que podemos usar las mismas funciones que las de Java.
+
+Otra peculiaridad de Kotlin es que hay una clara distinción entre las colecciones mutables y las colecciones inmutables, lo cual está alineado con el principio de preferir la inmutabilidad por sobre la mutabilidad.
+
+Por ejemplo tenemos las colecciones inmutables:
+
+```kotlin
+List<Int>
+Set<Int>
+Map<Int, String>
+```
+
+Las colecciones inmutables solo nos proveen métodos para leer los valores de la colección, no para modificarlos.
+
+Para las colecciones mutables tenemos:
+
+```kotlin
+MutableList<Int>
+MutableSet<Int>
+MutableMap<Int, String>
+```
+
+Estas colecciones mutables proveen métodos para leer y modificar los valores de la colección.
+
+Kotlin nos provee de funciones que nos ayudan a crear cualquier tipo de colección, por ejemplo:
+
+```kotlin
+val array = arrayOf(1, 2, 3)
+array.joinToString() // 1, 2, 3
+// nos devuelve una cadena con los valores de la colección separados por comas
+```
+
+También podemos crear un array con un tipo en específico:
+
+```kotlin
+val arrayInt = intArrayOf(1, 2, 3)
+val arrayDouble = doubleArrayOf(1.0, 2.0, 3.0)
+```
+
+Los mismo con las Listas:
+
+```kotlin
+val list = listOf(1, 1, 2, 3, 5, 8, 13)
+val mutableList = mutableListOf(1, 2, 3)
+```
+
+Para modificar la lista mutable:
+
+```kotlin
+mutableList[0] = 99
+println(mutableList) // [99, 2, 3]
+```
+
+Esto no podríamos hacerlo con una lista inmutable:
+
+```kotlin
+list[0] = 99 // Error
+```
+
+Lo mismo con lo Set:
+
+```kotlin
+val set = setOf(1, 1, 2, 3)
+println(set) // [1, 2, 3]
+```
+
+Los `set` tienen la peculiaridad de que no aceptan valores duplicados.
+
+```kotlin
+val mutableSet = mutableSetOf(1, 2, 3)
+mutableSet.add(4)
+println(mutableSet) // [1, 2, 3, 4]
+```
+
+Están también los `map`, que son una colección de pares de clave y valor.
+
+```kotlin
+val map: Map<Int, String> = mapOf(1 to "uno", 2 to "dos", 3 to "tres")
+val mutableMap: MutableMap<Int, String> = mutableMapOf(1 to "uno", 2 to "dos", 3 to "tres")
+```
+
+Cabe recalcar que existe una marcada diferencia entre las colecciones mutables y las inmutables, en donde siempre deberíamos preferir usar las colecciones inmutables, a menos que sea necesario usar una colección mutable.
+
+## Loops: For
+
+Los loops o ciclos en Kotlin son muy parecidos a los loops de Java, pero con algunas diferencias.
+
+```kotlin
+for (i in 1..10) {
+    println(i)
+}
+```
+
+Como podemos ver son mucho mas sencillos que en Java, en donde el iterados, itera por cada uno de los elementos de la colección.
+
+Es por eso que podemos hacer lo siguiente por ejemplo:
+
+```kotlin
+for (c in "Kotlin") {
+    println(c) 
+}
+
+// Devuelve: K o t l i n
+```
+
+Pasa por cada uno de los elementos, incluso si lo que se está iterando es un String.
+
+
+También podemos hacerlo con una colección:
+
+```kotlin
+val languages = listOf("Kotlin", "Java", "C++")
+
+for (lang in languages) {
+    println("$lang is great!") 
+}
+
+// devuelve: Kotlin is great! Java is great! C++ is great!
+```
+
+También podemos iterar al revés de la siguiente manera:
+
+```kotlin
+for (i in 10 downTo 1) {
+    println(i)
+}
+
+// devuelve: 10 9 8 7 6 5 4 3 2 1
+```
+
+También podemos saltarnos elementos:
+
+```kotlin
+for (i in 10 downTo 1 step 2) {
+    println(i)
+}
+
+// devuelve: 10 8 6 4 2
+```
+
+De esta forma iteramos de 2 en 2, en este caso desde el 10 hasta el 1.
+
+Todo lo que podemos hacer con un for loop en Java, también podemos hacerlo en Kotlin, solo que con una sintaxis distinta.
+
+## Loops: While
+
+Los loops `while` y `do-while` funcionan de la misma manera que los loops de Java.
+
+```kotlin
+val i = 1
+
+while(i <= 10) {
+    println("$i")
+    i++
+}
+
+// devuelve : 1 2 3 4 5 6 7 8 9 10
+```
+
+```kotlin
+do {
+    println(i)
+} while (i <= 20)
 ```
