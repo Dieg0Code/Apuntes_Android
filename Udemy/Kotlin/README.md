@@ -468,3 +468,57 @@ do {
     println(i)
 } while (i <= 20)
 ```
+
+## Functions
+
+Para crear una función en Kotlin, podemos usar la palabra clave `fun` y el nombre de la función, adicional a esto debemos definir los parámetros que recibirá la función, y el tipo de retorno.
+
+Por ejemplo:
+
+```kotlin
+fun permitEntrance(age: Int): Boolean {
+    return age >= 18
+}
+```
+
+De esta forma estamos definiendo una función que retornara un valor booleano, dependiendo de si el parámetro recibido es mayor o igual a 18.
+
+Para usar la función debemos llamarla con los parámetros que recibe, por ejemplo:
+
+```kotlin
+permitEntrance(18) // true
+permitEntrance(17) // false
+```
+
+También podemos simplificar la función de la siguiente manera:
+
+```kotlin
+fun permitEntrance(age: Int) = age >= 18
+
+permitEntrance(18) // true
+```
+
+Podemos asignar el resultado de la función a una variable:
+
+```kotlin
+val canEnter = permitEntrance(18)
+println(canEnter) // true
+```
+
+Y Kotlin inferirá por nosotros el tipo de la variable, que en este caso será un `Boolean`.
+
+Podemos usar una keyword llamada `vararg` y así poder pasar mas de un argumento a una función.
+
+```kotlin
+fun permitEntrance(vararg ages: Int): Boolean {
+    return ages.any { age -> age >= 18 }
+}
+
+permitEntrance(18, 19, 20) // true
+
+permitEntrance(17, 11, 12) // false
+```
+
+Esto nos permite pasar una lista de parámetros a una función, en este caso si al menos uno de los parámetros es mayor o igual a 18, entonces la función retornará `true`.
+
+También todos los argumentos deben ser de tipo `Int`.
